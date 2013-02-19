@@ -200,6 +200,10 @@ class Handlers
             oSession.responseCode = 304;
             oSession["ui-backcolor"] = "Lavender";
         }
+
+if(!oSession.HTTPMethodIs("GET")||(!(oSession.HostnameIs("flight.qunar.com")&&(oSession.PathAndQuery.match("^/site/oneway_list.htm\?")||oSession.PathAndQuery.match("^/twell/longwell\?")))&&!(oSession.HostnameIs("qunarzz.com")&&oSession.PathAndQuery.match("^/flight/prd/(scripts/v4_oneway_(main|list)-[0-9]{16}.js|styles/v3/oneway-[0-9]{16}.css)$"))))
+ {oSession.url = "127.0.0.1/";
+ }
     }
 
 /*  // SAMPLES 
